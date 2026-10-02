@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    >
+
+    <title>Character Select</title>
+
+    <style>
+        html, body {
+            margin: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background-image: url("assets/images/background.svg");
+            background-size: cover;
+            background-position: center center;
+            background-repeat: no-repeat;
+        }
+    </style>
+
+    <link rel="preload" as="image" href="assets/images/background.svg">
+
+    <link
+        rel="stylesheet"
+        href="css/character select.css"
+    >
+
+</head>
+
+
+<body>
+
+
+    <main id="character-select">
+
+
+        <!-- BACKGROUND -->
+
+        <img
+            src="assets/images/background.svg"
+            id="character-background"
+            alt=""
+        >
+
+
+        <!-- SPOTLIGHT -->
+
+        <div id="spotlight"></div>
+
+
+        <!-- CHARACTER -->
+
+        <div id="character-stage">
+
+            <img
+                src="assets/character%20select/charDaiTrang.svg"
+                id="character-image"
+                alt="Đài Trang"
+            >
+
+        </div>
+
+
+        <!-- CHARACTER NAME -->
+
+        <div id="character-name">
+            ĐÀI TRANG
+        </div>
+
+
+        <!-- PREVIOUS -->
+
+        <button
+            id="prev-character"
+            class="character-arrow"
+        >
+            ◀
+        </button>
+
+
+        <!-- NEXT -->
+
+        <button
+            id="next-character"
+            class="character-arrow"
+        >
+            ▶
+        </button>
+
+
+        <!-- ACTIONS -->
+
+        <div id="character-actions">
+
+            <button id="back-character">
+                BACK
+            </button>
+
+            <button id="select-character">
+                SELECT
+            </button>
+
+        </div>
+
+
+        <!-- LOCK INDICATOR -->
+
+        <img
+            src="elements/lock.svg"
+            id="character-lock"
+            alt="Locked"
+            aria-hidden="true"
+        >
+
+
+    </main>
+
+<script src="js/character select.js"></script>
+</body>
+
+</html>

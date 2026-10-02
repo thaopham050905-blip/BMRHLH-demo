@@ -1,0 +1,240 @@
+/* =========================
+   RESET
+========================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+/* =========================
+   TRANG
+========================= */
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    overflow: hidden;
+    background: #08080d;
+}
+
+
+/* =========================
+   HOME
+========================= */
+
+#home {
+    position: relative;
+
+    width: 100%;
+    height: 100vh;
+
+    overflow: hidden;
+}
+
+
+/* =========================
+   BACKGROUND
+========================= */
+
+#game-background {
+    position: absolute;
+
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    display: block;
+
+    z-index: 0;
+
+    image-rendering: pixelated;
+}
+
+
+/* =========================
+   MENU
+========================= */
+
+#menu {
+    position: absolute;
+
+    inset: 0;
+
+    z-index: 10;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+}
+
+
+/* =========================
+   LOGO
+========================= */
+
+#game-logo {
+    display: block;
+
+    width: min(30vw, 500px);
+
+    height: auto;
+
+    margin-top: 7vh;
+}
+
+
+/* =========================
+   MENU BUTTONS
+========================= */
+
+#menu-buttons {
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    gap: 18px;
+
+    margin-top: 35px;
+}
+
+
+/* =========================
+   BUTTON
+========================= */
+
+.stage-button {
+    position: relative;
+
+    width: 360px;
+    height: 70px;
+
+    border: 3px solid #e5b85c;
+
+    background:
+        linear-gradient(
+            180deg,
+            #8e2933 0%,
+            #6f1d29 50%,
+            #50151f 100%
+        );
+
+    color: #ffe9a8;
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-size: 27px;
+
+    font-weight: bold;
+
+    letter-spacing: 2px;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 0 0 3px #42151c,
+        0 5px 0 #241015;
+
+    text-shadow:
+        2px 2px 0 #5b241c;
+
+    transition:
+        transform 0.15s ease,
+        filter 0.15s ease;
+}
+
+.stage-button.move-up {
+    animation: moveUp 0.5s ease-in forwards;
+}
+
+@keyframes moveUp {
+    0% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateY(-100px);
+        opacity: 0;
+    }
+}
+
+
+/* VIỀN TRONG */
+
+.stage-button::before {
+    content: "";
+
+    position: absolute;
+
+    top: 5px;
+    left: 5px;
+    right: 5px;
+    bottom: 5px;
+
+    border: 2px solid #c9953e;
+
+    pointer-events: none;
+}
+
+
+/* HOVER */
+
+.stage-button:hover {
+    filter: brightness(1.25);
+
+    transform: scale(1.04);
+}
+
+
+/* CLICK */
+
+.stage-button:active {
+    transform: scale(0.97);
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 700px) {
+
+    #game-logo {
+        width: 45vw;
+
+        margin-top: 5vh;
+    }
+
+
+    #menu-buttons {
+        margin-top: 25px;
+
+        gap: 13px;
+    }
+
+
+    .stage-button {
+        width: 70vw;
+
+        height: 58px;
+
+        font-size: 20px;
+    }
+}

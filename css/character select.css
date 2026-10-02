@@ -1,0 +1,425 @@
+/* ========================================
+   CHARACTER SELECT
+======================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+body {
+    background-image: url("../assets/images/background.svg");
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+}
+
+
+/* ========================================
+   MAIN SCREEN
+======================================== */
+
+#character-select {
+    position: relative;
+
+    width: 100vw;
+    height: 100vh;
+
+    overflow: hidden;
+}
+
+
+/* ========================================
+   BACKGROUND
+======================================== */
+
+#character-background {
+    position: fixed;
+
+    top: 0;
+    left: 0;
+
+    width: 100vw;
+    height: 100vh;
+
+    display: block;
+    object-fit: cover;
+    object-position: center center;
+
+    z-index: 0;
+}
+
+
+/* ========================================
+   SPOTLIGHT
+======================================== */
+
+#spotlight {
+    position: absolute;
+
+    left: 50%;
+    top: 0;
+
+    transform: translateX(-50%);
+
+    width: min(34vw, 430px);
+    height: 82vh;
+
+    z-index: 1;
+
+    background:
+        linear-gradient(
+            to bottom,
+            rgba(255, 220, 92, 0.64) 0%,
+            rgba(255, 198, 55, 0.42) 28%,
+            rgba(255, 178, 30, 0.20) 62%,
+            rgba(255, 160, 20, 0.03) 100%
+        );
+
+    clip-path: polygon(
+        38% 0%,
+        62% 0%,
+        100% 100%,
+        0% 100%
+    );
+
+    filter: blur(10px);
+
+    opacity: 0.95;
+
+    pointer-events: none;
+}
+
+
+/* ========================================
+   CHARACTER STAGE
+======================================== */
+
+#character-stage {
+    position: absolute;
+
+    left: 50%;
+    bottom: 14%;
+
+    transform: translateX(-50%);
+
+    z-index: 3;
+
+    width: 300px;
+
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+#character-stage::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: -7px;
+    transform: translateX(-50%);
+    width: 150px;
+    height: 24px;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.52);
+    filter: blur(7px);
+    z-index: -1;
+}
+
+
+/* ========================================
+   CHARACTER
+======================================== */
+
+#character-image {
+    width: 175px;
+    height: auto;
+
+    image-rendering: pixelated;
+}
+
+
+/* ========================================
+   CHARACTER NAME
+======================================== */
+
+#character-name {
+    position: absolute;
+    top: 15%;
+    left: 50%;
+    transform: translateX(-50%);
+
+    z-index: 10;
+
+    font-family: "Arial Black", Arial, sans-serif;
+    font-size: 34px;
+    font-weight: 900;
+
+    color: #ffffff;
+
+    letter-spacing: 2px;
+    white-space: nowrap;
+    text-align: center;
+
+    /* Làm chữ dày hơn */
+    -webkit-text-stroke: 1.5px #000000;
+
+    text-shadow:
+        2px 2px 0 #000000;
+}
+
+
+/* ========================================
+   LOCK INDICATOR
+======================================== */
+
+#character-lock {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 64px;
+    height: 64px;
+    transform: translate(-50%, -50%) scale(0.8);
+    z-index: 8;
+    image-rendering: pixelated;
+    opacity: 0;
+    pointer-events: none;
+    visibility: hidden;
+}
+
+#character-lock.show {
+    animation: lockPop 0.65s steps(4, end) forwards;
+    visibility: visible;
+}
+
+@keyframes lockPop {
+    0% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.8);
+    }
+    20% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1.08);
+    }
+    45% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+    }
+    100% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(1);
+    }
+}
+
+
+/* ========================================
+   CHARACTER ARROWS
+======================================== */
+
+.character-arrow {
+    position: absolute;
+
+    top: 55%;
+
+    transform: translateY(-50%);
+
+    z-index: 6;
+
+    width: 70px;
+    height: 70px;
+
+    border: 3px solid white;
+
+    background: rgba(0, 0, 0, 0.55);
+
+    color: white;
+
+    font-family: monospace;
+    font-size: 28px;
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.15s ease,
+        background 0.15s ease;
+}
+
+
+/* LEFT */
+
+#prev-character {
+    left: 12%;
+}
+
+
+/* RIGHT */
+
+#next-character {
+    right: 12%;
+}
+
+
+/* HOVER */
+
+.character-arrow:hover {
+    background: white;
+    color: black;
+
+    transform:
+        translateY(-50%)
+        scale(1.08);
+}
+
+
+/* CLICK */
+
+.character-arrow:active {
+    transform:
+        translateY(-50%)
+        scale(0.95);
+}
+
+
+/* ========================================
+   CHARACTER ACTIONS
+======================================== */
+
+#character-actions {
+    position: absolute;
+
+    left: 50%;
+    bottom: 6%;
+
+    transform: translateX(-50%);
+
+    z-index: 6;
+
+    display: flex;
+    gap: 18px;
+
+    align-items: center;
+    justify-content: center;
+}
+
+#character-actions button {
+    padding: 10px 35px;
+
+    border: 3px solid white;
+
+    background: rgba(0, 0, 0, 0.75);
+
+    color: white;
+
+    font-family: monospace;
+    font-size: 20px;
+    font-weight: bold;
+
+    letter-spacing: 4px;
+
+    cursor: pointer;
+}
+
+#character-actions button:hover {
+    background: white;
+    color: black;
+}
+
+/* =========================
+   RESPONSIVE / PHONE
+========================= */
+
+@media (max-width: 700px) {
+    html, body {
+        width: 100%;
+        height: 100%;
+        height: 100dvh;
+        overflow: hidden;
+    }
+
+    #character-select,
+    #character-background {
+        width: 100%;
+        height: 100%;
+        height: 100dvh;
+    }
+
+    #spotlight {
+        width: clamp(150px, 48vw, 300px);
+        height: 72dvh;
+        filter: blur(7px);
+    }
+
+    #character-name {
+        top: 10dvh;
+        max-width: 90vw;
+        font-size: clamp(22px, 7vw, 32px);
+        letter-spacing: 1px;
+    }
+
+    #character-stage {
+        width: min(55vw, 280px);
+        bottom: 18dvh;
+    }
+
+    #character-image {
+        width: clamp(125px, 36vw, 175px);
+        max-height: 48dvh;
+        object-fit: contain;
+    }
+
+    #character-stage::after {
+        width: clamp(105px, 30vw, 150px);
+        height: clamp(16px, 4vw, 24px);
+        bottom: -5px;
+    }
+
+    .character-arrow {
+        width: clamp(48px, 13vw, 64px);
+        height: clamp(48px, 13vw, 64px);
+        font-size: clamp(20px, 6vw, 28px);
+        border-width: 2px;
+        top: 52%;
+    }
+
+    #prev-character { left: 5vw; }
+    #next-character { right: 5vw; }
+
+    #character-actions {
+        width: min(92vw, 430px);
+        bottom: calc(3dvh + env(safe-area-inset-bottom));
+        gap: clamp(8px, 3vw, 16px);
+    }
+
+    #character-actions button {
+        flex: 1 1 0;
+        min-width: 0;
+        min-height: 52px;
+        padding: 9px 14px;
+        font-size: clamp(16px, 4.8vw, 20px);
+        letter-spacing: 2px;
+        touch-action: manipulation;
+    }
+}
+
+@media (max-height: 600px) and (orientation: landscape) {
+    #character-name { top: 6dvh; }
+    #character-stage { bottom: 18dvh; }
+    #character-image { width: clamp(105px, 22vh, 155px); max-height: 55dvh; }
+    #character-actions { bottom: calc(2dvh + env(safe-area-inset-bottom)); }
+    .character-arrow { top: 50%; }
+}
+
+#character-actions button,
+.character-arrow {
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+}

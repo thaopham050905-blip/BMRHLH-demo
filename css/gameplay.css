@@ -1,0 +1,85 @@
+* { box-sizing: border-box; }
+html, body { margin:0; width:100%; height:100%; overflow:hidden; background:#120b0a; font-family:"Arial Black", Arial, sans-serif; }
+#game { position:relative; width:100%; height:100%; height:100dvh; overflow:hidden; background:#120b0a; }
+#game-background { position:absolute; opacity:0; inset:0; width:100%; height:100%; object-fit:cover; object-position:center; image-rendering:auto; }
+#stage-label { position:absolute; top:clamp(14px,3vh,24px); left:50%; transform:translateX(-50%); color:#fff; font-size:clamp(18px,3vw,28px); letter-spacing:clamp(1px,0.2vw,2px); -webkit-text-stroke:1px #000; text-shadow:2px 2px #000; z-index:5; white-space:nowrap; }
+#player { position:absolute; left:12%; bottom:2.8%; width:clamp(135px,16.5vw,220px); height:clamp(135px, 16.5vw,220px); aspect-ratio:300/260; z-index:6; transform-origin:center bottom; }
+#player img { width:100%; height:100%; display:block; opacity:1; visibility:visible; image-rendering:auto; object-fit:contain; }
+#character-shadow { position:absolute; left:calc(12% + clamp(25px,3.2vw,42px)); bottom:8.2%; width:clamp(100px,11.5vw,155px); height:clamp(16px,2.1vw,28px); border-radius:50%; background:rgba(0,0,0,.45); filter:blur(5px); z-index:4; }
+#controls { position:absolute; inset:0; pointer-events:none; z-index:20; }
+.control-btn {
+  appearance:none;
+  border:1px solid rgba(255,255,255,.28);
+  border-radius:18px;
+  min-width:74px;
+  height:58px;
+  padding:0 16px;
+  color:#fff;
+  font:700 14px/1 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  letter-spacing:.08em;
+  background:linear-gradient(180deg, rgba(35,35,48,.82), rgba(12,12,20,.72));
+  box-shadow:0 8px 22px rgba(0,0,0,.28), inset 0 1px 0 rgba(255,255,255,.12);
+  backdrop-filter:blur(8px);
+  -webkit-backdrop-filter:blur(8px);
+  cursor:pointer;
+  touch-action:none;
+  -webkit-tap-highlight-color:transparent;
+  user-select:none;
+  transition:transform .08s ease, filter .08s ease, background .08s ease;
+}
+.control-btn:active { transform:scale(.93); filter:brightness(1.18); }
+#jump-btn, 
+#jump-btn { font-size:25px; line-height:1; padding:0; }
+#left-btn, #right-btn { width:68px; min-width:68px; height:68px; border-radius:50%; font-size:26px; line-height:1; padding:0; }
+#left-controls, #move-controls { align-items:center; }
+#left-controls, #move-controls { position:absolute; bottom:calc(clamp(16px,4vh,34px) + env(safe-area-inset-bottom)); display:flex; gap:clamp(8px,1.2vw,16px); pointer-events:auto; }
+#left-controls { left:clamp(14px,4vw,42px); }
+#move-controls { right:clamp(14px,4vw,42px); }
+#back-level {
+  position:absolute;
+  top:clamp(14px,3vh,24px);
+  left:clamp(12px,2.5vw,28px);
+  transform:none;
+  z-index:20;
+  padding:10px 35px;
+  min-width:0;
+  border:3px solid white;
+  background:rgba(0,0,0,.8);
+  color:white;
+  font-family:monospace;
+  font-size:20px;
+  font-weight:bold;
+  letter-spacing:4px;
+  cursor:pointer;
+  box-shadow:none;
+  border-radius:0;
+  backdrop-filter:none;
+  -webkit-backdrop-filter:none;
+}
+#back-level:hover { background:white; color:black; }
+#hint { position:absolute; right:clamp(12px,2.5vw,28px); top:clamp(18px,4vh,32px); color:#fff; font-size:clamp(11px,1.2vw,14px); text-shadow:2px 2px #000; z-index:20; opacity:.9; }
+ 18% { filter:drop-shadow(0 0 16px rgba(255,220,110,1)); } 35% { filter:drop-shadow(0 0 4px rgba(255,220,110,.55)); } 100% { filter:drop-shadow(0 0 0 rgba(255,220,110,0)); } }
+ 22% { opacity:1; transform:scale(1); } 42% { opacity:.15; transform:scale(1.35); } 100% { opacity:0; transform:scale(1.7); } }
+ 50% { bottom:22.5%; } 100% { bottom:2.8%; } }
+
+@media (max-width:700px) {
+  #player { width:clamp(120px,30vw,170px); height:clamp(120px,30vw,170px); bottom:2.8%; }
+  #left-controls, #move-controls { bottom:calc(14px + env(safe-area-inset-bottom)); gap:10px; }
+  #left-controls { left:16px; flex-direction:column; gap:10px; }
+  #move-controls { right:16px; gap:10px; }
+  .control-btn { width:68px; min-width:68px; height:68px; padding:0; font-size:16px; }
+  #jump-btn, 
+  #jump-btn { font-size:25px; }
+  
+  #left-btn, #right-btn { font-size:25px; }
+  #hint { display:none; }
+  #back-level { min-width:0; padding:6px 20px; font-size:15px; letter-spacing:3px; }
+}
+
+@media (max-height:600px) and (orientation:landscape) {
+  #player { width:clamp(110px,21vh,160px); height:clamp(110px,21vh,160px); bottom:2.5%; }
+  #controls { bottom:2dvh; }
+  .control-btn { height:44px; }
+  #jump-btn, 
+  #left-btn, #right-btn { width:56px; min-width:56px; height:56px; }
+}
